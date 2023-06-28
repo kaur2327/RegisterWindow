@@ -1,7 +1,9 @@
 package com.satnam.registerwindow
 
+import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.RadioButton
@@ -20,7 +22,9 @@ class MainActivity : AppCompatActivity() {
     lateinit var female : RadioButton
     lateinit var other : RadioButton
     lateinit var reg : Button
+    lateinit var etmention : EditText
 
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -34,6 +38,7 @@ class MainActivity : AppCompatActivity() {
         female = (findViewById(R.id.female))
         other = (findViewById(R.id.other))
         reg = (findViewById(R.id.reg))
+        etmention = (findViewById(R.id.etmention))
 
         reg.setOnClickListener {
             if (EE.text.toString().isEmpty()) {
@@ -52,5 +57,16 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this, "Account has created successfully", Toast.LENGTH_LONG).show()
             }
         }
+        gender.setOnCheckedChangeListener { group, checkedId ->
+            if(checkedId == R.id.male){
+                etmention.visibility = View.GONE
+            }else if (checkedId == R.id.female){
+                etmention.visibility = View.GONE
+            }else{
+                etmention.visibility = View.VISIBLE
+            }
+        }
     }
 }
+
+
